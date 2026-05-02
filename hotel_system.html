@@ -124,9 +124,9 @@ input:checked+.tslider:before{transform:translateX(14px)}
 </style>
 
 <div class="nav">
-  <div class="nav-tab active" onclick="showPage('customer')" id="ntab-customer">🪑 Customer</div>
-  <div class="nav-tab" onclick="showPage('kitchen')" id="ntab-kitchen">👨‍🍳 Kitchen <span class="nbadge" id="kbadge" style="display:none">0</span></div>
-  <div class="nav-tab" onclick="showPage('admin')" id="ntab-admin">⚙️ Admin</div>
+  <div class="nav-tab active" onclick="showPage('customer')" id="ntab-customer">Customer</div>
+  <div class="nav-tab" onclick="showPage('kitchen')" id="ntab-kitchen">Kitchen <span class="nbadge" id="kbadge" style="display:none">0</span></div>
+  <div class="nav-tab" onclick="showPage('admin')" id="ntab-admin">Admin</div>
 </div>
 
 <!-- CUSTOMER -->
@@ -142,9 +142,9 @@ input:checked+.tslider:before{transform:translateX(14px)}
     </div>
     <div class="cscreen" id="cs-menu">
       <div class="app-hd">
-        <div class="hotel-nm" id="c-lbl1">Grand Palms · Table —</div>
+        <div class="hotel-nm" id="c-lbl1">Grand Palms · Table </div>
         <div class="app-title">Menu</div>
-        <button class="cback" onclick="cGo('cs-table')">← Change table</button>
+        <button class="cback" onclick="cGo('cs-table')">Change table</button>
       </div>
       <div class="ctabs" id="c-ctabs"></div>
       <div class="cmenu-list" id="c-mlist"></div>
@@ -156,19 +156,19 @@ input:checked+.tslider:before{transform:translateX(14px)}
     </div>
     <div class="cscreen" id="cs-cart">
       <div class="app-hd">
-        <div class="hotel-nm" id="c-lbl2">Grand Palms · Table —</div>
+        <div class="hotel-nm" id="c-lbl2">Grand Palms · Table </div>
         <div class="app-title">Your Order</div>
-        <button class="cback" onclick="cGo('cs-menu')">← Back to menu</button>
+        <button class="cback" onclick="cGo('cs-menu')">Back to menu</button>
       </div>
       <div style="flex:1;overflow-y:auto;padding:9px 16px" id="c-clist"></div>
       <div class="bill-bx" id="c-bill"></div>
-      <div class="cbar"><button class="cbarbtn" onclick="cGo('cs-pay')">Proceed to Payment →</button></div>
+      <div class="cbar"><button class="cbarbtn" onclick="cGo('cs-pay')">Proceed to Payment </button></div>
     </div>
     <div class="cscreen" id="cs-pay">
       <div class="app-hd">
         <div class="hotel-nm">Payment</div>
         <div class="app-title">Choose Method</div>
-        <button class="cback" onclick="cGo('cs-cart')">← Back to cart</button>
+        <button class="cback" onclick="cGo('cs-cart')">Back to cart</button>
       </div>
       <div style="flex:1;overflow-y:auto">
         <div class="pay-sec"><div class="pay-lbl">Payment method</div><div id="c-pmeth"></div></div>
@@ -219,30 +219,30 @@ window.APP = window.APP || {
 };
 
 const PAY_METHODS = [
-  {id:'upi', icon:'📱', name:'UPI / GPay / PhonePe', sub:'Instant transfer'},
-  {id:'card', icon:'💳', name:'Credit / Debit Card', sub:'Visa, Mastercard, RuPay'},
-  {id:'cash', icon:'💵', name:'Cash at table', sub:'Pay when served'},
-  {id:'room', icon:'🛎️', name:'Room charge', sub:'Billed to room'},
+  {id:'upi', icon:'', name:'UPI / GPay / PhonePe', sub:'Instant transfer'},
+  {id:'card', icon:'', name:'Credit / Debit Card', sub:'Visa, Mastercard, RuPay'},
+  {id:'cash', icon:'', name:'Cash at table', sub:'Pay when served'},
+  {id:'room', icon:'', name:'Room charge', sub:'Billed to room'},
 ];
 
 const TABLES = Array.from({length:12}, (_,i) => 'T'+(i+1));
 
 const DEFAULT_MENU = [
-  {id:1,name:"Dal Makhani",desc:"Slow-cooked black lentils, butter & cream",price:320,cat:"Indian",veg:true,emoji:"🫕",available:true},
-  {id:2,name:"Butter Chicken",desc:"Tandoori chicken in rich tomato gravy",price:420,cat:"Indian",veg:false,emoji:"🍗",available:true},
-  {id:3,name:"Paneer Tikka",desc:"Marinated cottage cheese, mint chutney",price:380,cat:"Indian",veg:true,emoji:"🧀",available:true},
-  {id:4,name:"Veg Biryani",desc:"Basmati rice, saffron, caramelised onions",price:350,cat:"Indian",veg:true,emoji:"🍚",available:true},
-  {id:5,name:"Mutton Rogan Josh",desc:"Slow-braised mutton, Kashmiri spices",price:520,cat:"Indian",veg:false,emoji:"🥘",available:true},
-  {id:6,name:"Garlic Naan",desc:"Tandoor-baked flatbread with garlic butter",price:80,cat:"Indian",veg:true,emoji:"🫓",available:true},
-  {id:7,name:"Caesar Salad",desc:"Romaine, croutons, parmesan, house dressing",price:360,cat:"Continental",veg:true,emoji:"🥗",available:true},
-  {id:8,name:"Grilled Chicken Steak",desc:"200g chicken breast, herb butter, seasonal veg",price:580,cat:"Continental",veg:false,emoji:"🥩",available:true},
-  {id:9,name:"Mushroom Risotto",desc:"Arborio rice, wild mushrooms, truffle oil",price:450,cat:"Continental",veg:true,emoji:"🍲",available:true},
-  {id:10,name:"Fish & Chips",desc:"Beer-battered sole, tartar sauce, fries",price:480,cat:"Continental",veg:false,emoji:"🐟",available:true},
-  {id:11,name:"Chocolate Lava Cake",desc:"Warm chocolate fondant, vanilla ice cream",price:280,cat:"Desserts",veg:true,emoji:"🍫",available:true},
-  {id:12,name:"Mango Panna Cotta",desc:"Set cream, alphonso mango coulis",price:240,cat:"Desserts",veg:true,emoji:"🍮",available:true},
-  {id:13,name:"Fresh Lime Soda",desc:"Sweet or salted, with ice",price:120,cat:"Beverages",veg:true,emoji:"🥤",available:true},
-  {id:14,name:"Masala Chai",desc:"Spiced tea, ginger & cardamom",price:80,cat:"Beverages",veg:true,emoji:"☕",available:true},
-  {id:15,name:"Cold Coffee",desc:"Blended with milk & ice cream",price:180,cat:"Beverages",veg:true,emoji:"🧋",available:true},
+  {id:1,name:"Dal Makhani",desc:"Slow-cooked black lentils, butter & cream",price:320,cat:"Indian",veg:true,emoji:"",available:true},
+  {id:2,name:"Butter Chicken",desc:"Tandoori chicken in rich tomato gravy",price:420,cat:"Indian",veg:false,emoji:"",available:true},
+  {id:3,name:"Paneer Tikka",desc:"Marinated cottage cheese, mint chutney",price:380,cat:"Indian",veg:true,emoji:"",available:true},
+  {id:4,name:"Veg Biryani",desc:"Basmati rice, saffron, caramelised onions",price:350,cat:"Indian",veg:true,emoji:"",available:true},
+  {id:5,name:"Mutton Rogan Josh",desc:"Slow-braised mutton, Kashmiri spices",price:520,cat:"Indian",veg:false,emoji:"",available:true},
+  {id:6,name:"Garlic Naan",desc:"Tandoor-baked flatbread with garlic butter",price:80,cat:"Indian",veg:true,emoji:"",available:true},
+  {id:7,name:"Caesar Salad",desc:"Romaine, croutons, parmesan, house dressing",price:360,cat:"Continental",veg:true,emoji:"",available:true},
+  {id:8,name:"Grilled Chicken Steak",desc:"200g chicken breast, herb butter, seasonal veg",price:580,cat:"Continental",veg:false,emoji:"",available:true},
+  {id:9,name:"Mushroom Risotto",desc:"Arborio rice, wild mushrooms, truffle oil",price:450,cat:"Continental",veg:true,emoji:"",available:true},
+  {id:10,name:"Fish & Chips",desc:"Beer-battered sole, tartar sauce, fries",price:480,cat:"Continental",veg:false,emoji:"",available:true},
+  {id:11,name:"Chocolate Lava Cake",desc:"Warm chocolate fondant, vanilla ice cream",price:280,cat:"Desserts",veg:true,emoji:"",available:true},
+  {id:12,name:"Mango Panna Cotta",desc:"Set cream, alphonso mango coulis",price:240,cat:"Desserts",veg:true,emoji:"",available:true},
+  {id:13,name:"Fresh Lime Soda",desc:"Sweet or salted, with ice",price:120,cat:"Beverages",veg:true,emoji:"",available:true},
+  {id:14,name:"Masala Chai",desc:"Spiced tea, ginger & cardamom",price:80,cat:"Beverages",veg:true,emoji:"",available:true},
+  {id:15,name:"Cold Coffee",desc:"Blended with milk & ice cream",price:180,cat:"Beverages",veg:true,emoji:"",available:true},
 ];
 
 // Customer local state
